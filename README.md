@@ -1,2 +1,4 @@
-# mandelbrot-fractal
+# Mandelbrot Fractal visualization
 Simple Mandelbrot fractal visualization using C++ and SDL2.
+
+# Screenshots
