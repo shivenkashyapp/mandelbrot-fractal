@@ -1,24 +1,32 @@
 #include <SDL2/SDL.h>
-#include <complex>
-#include <iostream>
 
-using namespace std;
+#include <complex>
+#include <stdio.h>
+#include <string>
+
+#define ITER_MAX_DEF 30
 
 constexpr int W = 400;
 constexpr int H = 300;
 constexpr int HW = W / 2;
 constexpr int HH = H / 2;
 
-constexpr float zoomx = 2.f / W;
-constexpr float zoomy = 2.f / H;
+constexpr float zoomx = 3.f / H;
+constexpr float zoomy = 3.f / H;
 
-constexpr float scalex = 3.f;
-constexpr float scaley = 3.f;
+constexpr float scalex = 1.f;
+constexpr float scaley = 1.f;
 
-constexpr int iter_max = 20;
-
-int main() {
+int main(int argc, char** argv) {
 	/* TODO: Add error handling */
+	Uint32 fstart;
+	uint8_t color;
+	char fps[12];
+	int iter_max;
+
+	argc < 2 ? (iter_max = ITER_MAX_DEF) : (iter_max = std::stoi(argv[1]));
+	printf("Max iterations: %d\n", iter_max);
+
 	SDL_Init(SDL_INIT_VIDEO);
 	
 	SDL_Window* window = SDL_CreateWindow("Simple Mandelbrot Fractal plotter", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, W * scalex, H * scaley, SDL_WINDOW_SHOWN);
@@ -27,11 +35,13 @@ int main() {
 	SDL_RenderSetLogicalSize(renderer, W, H);
 
 	SDL_Event e;
-	for ( ;; ) {
+	
+	while (1) {
+		fstart = SDL_GetTicks();
 		for (int x=0; x < W; x++) {
 			for (int y=0; y < H; y++) {
-				complex<float> c((x - HW) * zoomx, (y - HH) * zoomy); 
-				complex<float> z(0, 0);
+				std::complex<float> c((x - HW) * zoomx, (y - HH) * zoomy); 
+				std::complex<float> z(0, 0);
 				int iter_count = 0;
 
 				while (iter_count < iter_max) {
@@ -41,7 +51,7 @@ int main() {
 				}
 
 				// TODO: Extract colors from a texture map
-				uint8_t color = int(255 * iter_count / iter_max);
+				color = int(255 * iter_count / iter_max);
 
 				SDL_SetRenderDrawColor(renderer, color, color, color, 255);
 				SDL_RenderDrawPoint(renderer, x, y);
@@ -49,12 +59,15 @@ int main() {
 		}
 
 		SDL_RenderPresent(renderer);
+		sprintf(fps, "C++ %.1f FPS", 1000.f / (SDL_GetTicks() - fstart));
+		SDL_SetWindowTitle(window, fps);
 
 		while (SDL_PollEvent(&e)) if (e.type == SDL_QUIT) return 0;
-		// SDL_Delay(10);
 	}
 	
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
+	
+	return 0;
 }
