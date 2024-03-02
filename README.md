@@ -11,18 +11,18 @@ git clone https://github.com/shivenkashyapp/mandelbrot-fractal/ && cd mandelbrot
 ```
 
 Build the default C example:
-```shell
+```zsh
 make
 ```
 
 Specify a particular language (c/cpp):
-```shell
+```zsh
 make c
 make cpp
 ```
 
 (Optional) Specify GCC optimization flag:
-```shell
+```zsh
 $ make LANG=c OPTIMIZATION=-O2
 ```
 
