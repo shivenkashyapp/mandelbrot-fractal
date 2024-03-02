@@ -36,3 +36,5 @@ C with no optimizations:
 C++ with no optimizations:
 
 ![Cpp-no-optimization](./screenshots/cpp-no-opt.png?raw=true "C++ with no optimizations")
+
+* However, it is important to note that running both the C and C++ examples with maximum optimizations (`-O3`), they perform nearly the same, with C having a slight edge over C++. 
