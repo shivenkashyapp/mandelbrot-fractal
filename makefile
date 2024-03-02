@@ -4,10 +4,17 @@ SDL_FLAGS = $(shell pkg-config --libs --cflags sdl2)
 # GCC compiler optimizations
 max = -O3
 mod = -O2
-OPTIMIZE ?= mod
+OPTIMIZE ?= $(mod)
 
-LANG ?= c
-.DEFAULT_GOAL := $(LANG)
+.DEFAULT_GOAL := c
+
+ifeq ($(TARGET), )
+all:
+	@$(MAKE) $(DEFAULT_GOAL)
+else
+all:
+	@$(MAKE) $(TARGET)
+endif
 
 c: c.c
 	@echo "Building C example ..."
