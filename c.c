@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+
 #include <stdio.h>
 #include <complex.h>
 
@@ -8,8 +9,8 @@
 #define CX (float)(W)/2
 #define CY (float)(H)/2
 /* scaling factors to upscale/downscale processing dimensions. */
-#define SX 3.f
-#define SY 3.f
+#define SX 2.f
+#define SY 2.f
 /* Scaled dimensions */
 #define SW W*SX
 #define SH H*SY
@@ -27,7 +28,7 @@
 
 int main(int argc, char **argv) {
 	Uint32 fstart;
-	char fps[4];
+	char fps[10];
 	uint8_t iter_count;
 	uint16_t max_iter;
 	
@@ -35,6 +36,7 @@ int main(int argc, char **argv) {
 	printf("Max iterations: %d\n", max_iter);
 
 	Uint32 color;
+	float max_fps = 0.0f;
 
 	SDL_Init(SDL_INIT_VIDEO);	
 	SDL_Window* window = SDL_CreateWindow("simple.c", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SW, SH, SDL_WINDOW_SHOWN);	
@@ -64,9 +66,10 @@ int main(int argc, char **argv) {
 
 		SDL_RenderPresent(renderer);
 
-		/* TODO: Better way to handle sprintf overflows? Handle destination sizes better.*/
-		sprintf(fps, "%.1f", 1000.f / (SDL_GetTicks() - fstart));
+		/* TODO: Better way to handle sprintf overflows? Handle destination sizes dynamically. */
+		sprintf(fps, "C %.1f FPS", 1000.f / (SDL_GetTicks() - fstart));
 		SDL_SetWindowTitle(window, fps);
+
 
 		while (SDL_PollEvent(&e)) if (e.type == SDL_QUIT) return 0;
 	}
