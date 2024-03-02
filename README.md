@@ -3,19 +3,19 @@ Simple Mandelbrot fractal visualization using C, C++ and SDL2.
 
 # Running 
 Clone the repo:
-```shell
-$ git clone https://github.com/shivenkashyapp/mandelbrot-fractal/ && cd mandelbrot-fractal
+```bash
+git clone https://github.com/shivenkashyapp/mandelbrot-fractal/ && cd mandelbrot-fractal
 ```
 
 Build the default C example:
 ```shell
-$ make
+make
 ```
 
 Specify a particular language (c/cpp):
 ```shell
-$ make c
-$ make cpp
+make c
+make cpp
 ```
 
 (Optional) Specify GCC optimization flag:
