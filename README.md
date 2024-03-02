@@ -6,7 +6,7 @@ Simple Mandelbrot fractal visualization using C, C++ and SDL2.
 
 # Running 
 Clone the repo:
-```bash
+```zsh
 git clone https://github.com/shivenkashyapp/mandelbrot-fractal/ && cd mandelbrot-fractal
 ```
 
@@ -23,7 +23,7 @@ make cpp
 
 (Optional) Specify GCC optimization flag:
 ```zsh
-$ make LANG=c OPTIMIZATION=-O2
+make LANG=c OPTIMIZATION=-O2
 ```
 
 # Weird performance results
