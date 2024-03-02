@@ -1,6 +1,9 @@
 # Mandelbrot Fractal visualization
 Simple Mandelbrot fractal visualization using C, C++ and SDL2.
 
+![C++ output](./screenshots/cpp.png?raw=true "`C++`")
+
+
 # Running 
 Clone the repo:
 ```bash
@@ -33,6 +36,3 @@ C with no optimizations:
 C++ with no optimizations:
 
 ![Cpp-no-optimization](./screenshots/cpp-no-opt.png?raw=true "C++ with no optimizations")
-
-# Screenshots
-![C++ output](./screenshots/cpp.png?raw=true "`C++`")
